@@ -1,0 +1,204 @@
+/* Dark quotes landing — layout, theme, scroll-reveal states */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-deep: #0a0e17;
+  --bg-mid: #121826;
+  --text: #e8ecf4;
+  --text-muted: #8b95a8;
+  --accent: #7c9cbf;
+  --accent-soft: rgba(124, 156, 191, 0.22);
+  --card-border: rgba(255, 255, 255, 0.08);
+  --shadow: 0 24px 48px rgba(0, 0, 0, 0.45);
+  --font-sans: "DM Sans", system-ui, sans-serif;
+  --font-serif: "Source Serif 4", Georgia, serif;
+  --reveal-duration: 0.65s;
+  --reveal-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg-deep);
+  background-image:
+    radial-gradient(ellipse 120% 80% at 50% -20%, rgba(124, 156, 191, 0.12), transparent 50%),
+    radial-gradient(ellipse 80% 50% at 100% 50%, rgba(90, 110, 160, 0.08), transparent 45%),
+    linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-mid) 55%, var(--bg-deep) 100%);
+}
+
+.bg-glow {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at 20% 80%,
+    rgba(124, 156, 191, 0.06) 0%,
+    transparent 45%
+  );
+  z-index: 0;
+}
+
+.hero {
+  position: relative;
+  z-index: 1;
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: clamp(3rem, 10vw, 5.5rem) 1.5rem 3rem;
+  text-align: center;
+}
+
+.hero__eyebrow {
+  margin: 0 0 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.hero__title {
+  margin: 0 0 1rem;
+  font-family: var(--font-serif);
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.hero__lead {
+  margin: 0;
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  max-width: 32ch;
+  margin-inline: auto;
+}
+
+.quotes {
+  position: relative;
+  z-index: 1;
+  max-width: 36rem;
+  margin: 0 auto;
+  padding: 0 1.5rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.quote-card {
+  margin: 0;
+  padding: 1.5rem 1.5rem 1.35rem;
+  border-radius: 14px;
+  border: 1px solid var(--card-border);
+  background: rgba(18, 24, 38, 0.65);
+  backdrop-filter: blur(12px);
+  box-shadow: var(--shadow);
+  opacity: 0;
+  transform: translateY(24px) scale(0.98);
+  transition:
+    opacity var(--reveal-duration) var(--reveal-ease),
+    transform var(--reveal-duration) var(--reveal-ease);
+}
+
+.quote-card.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.quote-card:nth-child(1) {
+  transition-delay: 0s;
+}
+.quote-card:nth-child(2) {
+  transition-delay: 0.04s;
+}
+.quote-card:nth-child(3) {
+  transition-delay: 0.08s;
+}
+.quote-card:nth-child(4) {
+  transition-delay: 0.12s;
+}
+.quote-card:nth-child(5) {
+  transition-delay: 0.16s;
+}
+.quote-card:nth-child(6) {
+  transition-delay: 0.2s;
+}
+.quote-card:nth-child(7) {
+  transition-delay: 0.24s;
+}
+.quote-card:nth-child(8) {
+  transition-delay: 0.28s;
+}
+.quote-card:nth-child(9) {
+  transition-delay: 0.32s;
+}
+.quote-card:nth-child(10) {
+  transition-delay: 0.36s;
+}
+.quote-card:nth-child(11) {
+  transition-delay: 0.4s;
+}
+.quote-card:nth-child(12) {
+  transition-delay: 0.44s;
+}
+
+.quote-card__text {
+  margin: 0 0 1rem;
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  line-height: 1.55;
+  color: var(--text);
+}
+
+.quote-card__text::first-letter {
+  color: var(--accent);
+}
+
+.quote-card__author {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  border-top: 1px solid var(--accent-soft);
+  padding-top: 0.85rem;
+}
+
+.site-footer {
+  position: relative;
+  z-index: 1;
+  padding: 2rem 1.5rem 3rem;
+  text-align: center;
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+.site-footer code {
+  font-size: 0.85em;
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .quote-card {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
